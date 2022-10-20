@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Sliding login and registration form | FantacyDesigns</title>
+	<link rel="stylesheet" href="{{asset('/css/test.css')}}">
+	<!-- <link href="{{asset('/js/test.js')}}"> -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<script type="text/javascript" src="{{asset('/js/reg.js')}}"></script>
+
+</head>
+
+
+<body>
+	<div class="container right-panel-active">
+		<!-- Sign Up -->
+		<div class="container__form container--signup">
+			<form action="{{route('students.store')}}" method='POST' class="form" id="studentregform">
+				@csrf
+				<h2 class="form__title">Student Registration</h2>
+
+				<input type="text" name="firstname" placeholder="First Name" class="input">
+				<input type="text" name="lastname" placeholder="Last Name" class="input">
+				<input type="email" name="email" placeholder="Enter Your Email" class="input">
+				<input type="tel" name="phonenumber" placeholder="Enter Your Phone number" class="input">
+				<input type="password" name="password" placeholder="Your Password" class="input">
+
+				<button class="btn" type="submit" id="submit">Sign Up</button>
+			</form>
+		</div>
+
+		<!-- Sign In -->
+		<div class="container__form container--signin">
+		<form action="{{route('therapists.store')}}" method='POST' class="form" id="therapistregform">
+				@csrf
+				<h2 class="form__title">Therapist Registration</h2>
+				<input type="text" name="firstname" placeholder="First Name" class="input">
+				<input type="text" name="lastname" placeholder="Last Name" class="input">
+				<input type="email" name="email" placeholder="Enter Your Email" class="input">
+				<input type="tel" name="phonenumber" placeholder="Enter Your Phone number" class="input">
+				<input type="text" name="licensenumber" placeholder="License Number" class="input">
+				<select name="licensestatus" placeholder="License Status" id="licensestatus" class="input">>
+					<option value="active">Active</option>
+					<option value="inactive">Inactive</option>
+					<option value="pending">Pending</option>
+				</select>
+				<textarea name="reason" placeholder="What is the reason..." class="input"></textarea>
+				<input type="password" name="password" placeholder="Your Password" class="input">
+				<button class="btn" type="submit" id="submit">Sign Up</button>
+			</form>
+		</div>
+
+		<!-- Overlay -->
+		<div class="container__overlay">
+			<div class="overlay">
+				<div class="overlay__panel overlay--left">
+					<button class="btn" onclick="switchSlide()" id="signIn">Therapist</button>
+				</div>
+				<div class="overlay__panel overlay--right">
+					<button class="btn" onclick="switchSlide()" id="signUp">Student</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+
+<!-- <script>
+	$(document).ready(function() {
+		if ($("#studentregform").length > 0) {
+			$("#studentregform").validate({
+
+				submitHandler: function(form) {
+					$.ajaxSetup({
+						headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+						}
+					});
+
+					$('#submit').html('Please Wait...');
+					$("#submit").attr("disabled", true);
+
+					$.ajax({
+						url: "{{route('students.store')}}",
+						type: "POST",
+						data: $('#studentregform').serialize(),
+						success: function(response) {
+							$('#submit').html('Submit');
+							$("#submit").attr("disabled", false);
+							alert('Ajax form has been submitted successfully');
+							document.getElementById("studentregform").reset();
+						}
+					});
+				}
+			})
+		}
+
+	});
+</script> -->
+
+</html>
