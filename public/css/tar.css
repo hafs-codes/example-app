@@ -1,0 +1,44 @@
+* {
+    padding: 0;
+    margin: 0
+}
+
+.wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#16a085;
+}
+
+.animated-check {
+    height: 10em;
+    width: 10em
+}
+
+.animated-check path {
+    fill: none;
+    stroke: rgb(255, 255, 255);;
+    stroke-width: 4;
+    stroke-dasharray: 23;
+    stroke-dashoffset: 23;
+    animation: draw 1s linear forwards;
+    stroke-linecap: round;
+    stroke-linejoin: round
+}
+
+@keyframes draw {
+    to {
+        stroke-dashoffset: 0
+    }
+}
+a{
+    background: #00d2ff;
+    border-radius: 10px;
+    text-decoration: none;
+    bottom: 50px;
+    left: 100px;
+    width: 300px;
+    height: 300px;
+    background: #00d2ff;
+}
